@@ -1,3 +1,5 @@
-flask
-flask-socketio
+quart
+python-socketio
 python-dotenv
+aiosqlite
+uvicorn

@@ -2,3 +2,4 @@
 env/
 db.json
 uploads/
+__pycache__
