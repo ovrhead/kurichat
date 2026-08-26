@@ -2,6 +2,9 @@ import os
 import json
 from flask import Flask, send_from_directory, request, jsonify
 from flask_socketio import SocketIO, emit
+from dotenv import load_dotenv
+
+load_dotenv()
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'kurichat-secret'
@@ -11,6 +14,11 @@ socketio = SocketIO(app, cors_allowed_origins="*")
 BASE_DIR = os.path.dirname(os.path.abspath(__name__))
 DB_FILE = os.path.join(BASE_DIR, 'db.json')
 UPLOAD_DIR = os.path.join(BASE_DIR, 'uploads')
+
+try:
+    IS_DEBUG_MODE = os.environ.get("DEBUG", "False").lower() == "true"
+except Exception as err:
+    print(err)
 
 if not os.path.exists(UPLOAD_DIR):
     os.makedirs(UPLOAD_DIR)
@@ -188,4 +196,4 @@ def handle_update_profile(user_data):
 if __name__ == '__main__':
     print("Starting Kurichat Server...")
     print("Access it on your local network IP (e.g., http://192.168.x.x:5000)")
-    socketio.run(app, host='0.0.0.0', port=5000, debug=True, allow_unsafe_werkzeug=True)
+    socketio.run(app, host='0.0.0.0', port=5002, debug=IS_DEBUG_MODE, allow_unsafe_werkzeug=True)
