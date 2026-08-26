@@ -12,3 +12,6 @@ it supports
 - sending voice messages
 
 and thats it.
+
+--------------------------------------------
+see old https://github.com/ovrhead/kurichat/tree/main
